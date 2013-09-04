@@ -173,4 +173,18 @@ module Jpmobile
       end
     end
   end
+
+  # 4ByteUTF8文字列を〓に変換する
+  class Remove4ByteUTF8Word < HankakuFilter
+    def to_internal(str, controller)
+      if Jpmobile::Util.utf8_4bytes_regexp.match(str)
+        str.gsub(Jpmobile::Util.utf8_4bytes_regexp, Jpmobile::Emoticon::GETA)
+      else
+        str
+      end
+    end
+
+    def apply_incoming?(*args); true; end
+    def apply_outgoing?(*args); false; end
+  end
 end

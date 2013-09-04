@@ -273,6 +273,10 @@ module Jpmobile
       end
     end
 
+    def utf8_4bytes_regexp
+      /([\xF0-\xF7][\x80-\xBF])([\x80-\xBF][\x80-\xBF])/
+    end
+
     def detect_encoding(str)
       case str.encoding
       when ::Encoding::ISO2022_JP
